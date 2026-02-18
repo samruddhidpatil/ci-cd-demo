@@ -36,6 +36,7 @@ jobs:
     - name : Push Image to Docker hub 
       run :  docker push ${{secrets.DOCKERHUB_USERNAME}}/springboot:latest
 
+
     - name : SSH into machine 
       uses: appleboy/ssh-action@v1
       with:
