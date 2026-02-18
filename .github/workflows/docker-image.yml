@@ -31,10 +31,10 @@ jobs:
 
 
     - name: Build Docker Image 
-      run : docker build -t ${{secrets.DOCKER_USERNAME}}/springboot:latest
+      run : docker build -t ${{secrets.DOCKERHUB_USERNAME}}/springboot:latest
 
     - name : Push Image to Docker hub 
-      run :  docker push ${{secrets.DOCKER_USERNAME}}/springboot:latest
+      run :  docker push ${{secrets.DOCKERHUB_USERNAME}}/springboot:latest
 
     - name : SSH into machine 
       uses: appleboy/ssh-action@v1
@@ -45,8 +45,8 @@ jobs:
           script:
             docker stop spring-demo || true
             docker rm spring-demo || true
-            docker pull ${{secrets.DOCKER_USERNAME}}/springboot:latest
-            docker run --name spring-demo -d -p 8080:8080 ${{secrets.DOCKER_USERNAME}}/springboot:latest
+            docker pull ${{secrets.DOCKERHUB_USERNAME}}/springboot:latest
+            docker run --name spring-demo -d -p 8080:8080 ${{secrets.DOCKERHUB_USERNAME}}/springboot:latest
             
 
 
